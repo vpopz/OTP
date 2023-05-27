@@ -32,7 +32,7 @@ const OTPSchema = new Mongoose.Schema({
     },
   });
   
-  app.post('/send-otp', (req, res) => {
+  app.post('send-otp', (req, res) => {
     const { email } = req.body;
   
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
