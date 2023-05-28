@@ -32,11 +32,9 @@ const OTPSchema = new Mongoose.Schema({
     },
   });
   
-  app.post('send-otp', (req, res) => {
+  app.post('/send-otp', (req, res) => {
     const { email } = req.body;
-  
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  
     const mailOptions = {
       from: 'vaisakh1996v@gmail.com',
       to: email,
@@ -62,10 +60,10 @@ const OTPSchema = new Mongoose.Schema({
   });
   
   app.post('/verify-otp', async (req, res) => {
-      const { email, otp } = req.body;
+      const { otp } = req.body;
     
       try {
-        const result = await OTP.findOne({ email, otp });
+        const result = await OTP.findOne({ otp });
     
         if (result) {
           res.json({ message: 'OTP verified successfully' });
